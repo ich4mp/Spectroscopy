@@ -13,8 +13,8 @@ A sample image `cfl.png` is used to demonstrate how the code works. You can repl
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/your-repository.git
-    cd your-repository
+    git clone https://github.com/ich4mp/Spectroscopy.git
+    cd intensity
     ```
 
 2. **Install the required dependencies**:
@@ -26,7 +26,7 @@ A sample image `cfl.png` is used to demonstrate how the code works. You can repl
     Replace `cfl.png` with your own image file if necessary, or use the sample `cfl.png`.
 
     ```bash
-    python generate_intensity_graph.py cfl.png
+    python intensity.py cfl.png
     ```
 
 4. **Output**:
