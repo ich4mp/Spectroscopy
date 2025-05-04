@@ -48,6 +48,7 @@ plt.plot(w_l, intens)
 ######l = [405, 436, 546, 691]
 ######i = [146, 194, 250, 311]
 ######plt.plot(l, i)
+plt.grid(True)
 plt.show()
     
         
