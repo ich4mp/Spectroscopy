@@ -1,20 +1,33 @@
-# Spectroscopy
+# 🌈 Spectroscopy (Image-Based Approximation)
 
-This project generates an intensity graph based on a provided light intensity image. The sample implementation uses the image file `cfl.png` as input.
+This project generates a light intensity vs. wavelength graph from an image of a dispersed light spectrum (e.g., from a CFL bulb). The image is processed to extract grayscale intensity information column by column, and the result is plotted as a spectral intensity graph.
 
-## How It Works
+---
 
-The code processes an input image (e.g., `cfl.png`) to analyze its light intensity and generates a corresponding graph that visualizes the intensity distribution.
+## ⚙️ How It Works
 
-### Example Input
-A sample image `cfl.png` is used to demonstrate how the code works. You can replace this image with your own light intensity images.
+1. The input image (e.g., `cfl.png`) is read and converted to grayscale.
+2. For each vertical column of pixels, the average intensity is computed.
+3. These intensities are normalized relative to the brightest column.
+4. The horizontal width of the image is linearly mapped to the visible wavelength range (400–800 nm).
+5. The final output is a plot of **normalized intensity vs. wavelength**, approximating an emission spectrum.
 
-### Usage
+---
+
+## 📥 Example Input
+
+A sample image `cfl.png` is included to demonstrate how the code works. This should be a photo of a visible light spectrum, such as a CFL bulb viewed through a diffraction grating or prism.
+
+You can replace this image with your own, as long as it contains a horizontally dispersed light spectrum.
+
+---
+
+## ▶️ Usage
 
 1. **Clone the repository**:
     ```bash
     git clone https://github.com/ich4mp/Spectroscopy.git
-    cd intensity
+    cd Spectroscopy
     ```
 
 2. **Install the required dependencies**:
@@ -23,24 +36,64 @@ A sample image `cfl.png` is used to demonstrate how the code works. You can repl
     ```
 
 3. **Run the script**:
-    Replace `cfl.png` with your own image file if necessary, or use the sample `cfl.png`.
+
+    By default, the script processes the file `cfl.png`. You can replace this with your own image by updating the filename in the script.
 
     ```bash
-    python intensity.py cfl.png
+    python intensity.py
     ```
 
+    > 💡 You can modify the script to accept command-line arguments if you'd like dynamic image input.
+
 4. **Output**:
-    The script will generate an intensity graph based on the image, which can be saved or visualized.
 
-### Customization
+    The script will display a graph of **normalized light intensity vs. wavelength (nm)**.
 
-You can replace the image file `cfl.png` with any image of your choice. Ensure that the image is properly formatted for intensity analysis (e.g., grayscale or color image).
+    Local intensity peaks (representing possible emission lines) will also be printed in the terminal output, like:
 
-### Example Output
+    ```
+    Index :  120 Value :  0.83
+    Index :  245 Value :  0.91
+    ```
 
-The generated intensity graph will be saved to a file or displayed depending on how the code is set up. It will show the light intensity distribution of the provided image.
+---
 
-## Dependencies
+## 🛠️ Customization
+
+- **Input Image**:  
+  Replace `cfl.png` with any suitable image showing a dispersed light spectrum.
+
+- **Wavelength Mapping**:  
+  The default wavelength range is 400–800 nm mapped across the image width. You can change this range in the script if needed:
+
+    ```python
+    m = 400 / width
+    wavelength = i * m + 400
+    ```
+
+- **Peak Detection**:  
+  The script identifies local maxima in the normalized intensity to highlight key spectral lines.
+
+---
+
+## 📊 Example Output
+
+A graph is displayed showing:
+
+- **X-axis**: Wavelength (nm)
+- **Y-axis**: Normalized light intensity
+
+Optionally, you can save the graph or enhance it with peak labels and annotations.
+
+---
+
+## 📦 Dependencies
 
 - Python 3.x
-- Required libraries (listed in `requirements.txt`)
+- OpenCV (`cv2`)
+- Matplotlib
+
+Install required libraries with:
+
+```bash
+pip install -r requirements.txt
