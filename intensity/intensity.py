@@ -1,5 +1,6 @@
 import cv2 as cv
 
+# Read image (image should be in same directory where python code is.)
 img = cv.imread('cfl.png')
 
 
